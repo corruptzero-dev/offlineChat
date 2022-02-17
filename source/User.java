@@ -3,7 +3,7 @@ package ru.corruptzero;
 public class User extends Thread {
     UDPSender sender;
     UDPListener listener;
-
+    ChatThread ct = new ChatThread();
     public final String login;
     public User(String login) throws InterruptedException {
         sender = new UDPSender();
@@ -19,12 +19,13 @@ public class User extends Thread {
         chat();
     }
     public void chat() throws InterruptedException {
+        ct.start();
+        System.out.printf("%s подключился.\n", login);
         while (true){
             sender.send();
             System.out.printf("%s отправляет сообщение.\n", login);
-            listener.listen();
+            Thread.sleep(1000);
         }
-        //listener.listen();
     }
 
     @Override
