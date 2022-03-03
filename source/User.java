@@ -19,12 +19,13 @@ public class User extends Thread {
         chat();
     }
     public void chat() throws InterruptedException {
+        ct.join();
         ct.start();
         System.out.printf("%s подключился.\n", login);
         while (true){
-            sender.send();
-            System.out.printf("%s отправляет сообщение.\n", login);
-            Thread.sleep(1000);
+            sender.send(login);
+            System.out.printf("%s отправляет сообщение.%n", login);
+            Thread.sleep(5000);
         }
     }
 

@@ -4,6 +4,7 @@ import java.net.*;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
+
 public class UDPListener {
     public void listen() {
         int port = 11111;
@@ -17,6 +18,8 @@ public class UDPListener {
             byte[] buffer = new byte[1000];
             DatagramPacket receivedMessage = new DatagramPacket(buffer, buffer.length);
             socket.receive(receivedMessage); //данные записались в буффер
+            String s = StandardCharsets.UTF_8.decode(ByteBuffer.wrap(buffer)).toString().trim();
+            System.out.println(s);
         } catch (Exception e) {
             e.printStackTrace();
         }

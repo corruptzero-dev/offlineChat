@@ -1,6 +1,7 @@
 package ru.corruptzero;
 
 public class ChatThread extends Thread{
+
     UDPListener listener = new UDPListener();
     @Override
     public void run(){
